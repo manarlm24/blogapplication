@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <!-- Font Awesome icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f0f4f8;
+        }
+        header {
+            background-color: #007bff; /* BLUE */
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            padding: 40px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 40px;
+            color: #007bff;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .option-card {
+            background-color: white;
+            padding: 30px 20px;
+            border-radius: 8px;
+            width: 220px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .option-card i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #007bff; /* BLUE icons */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <span><i class="fas fa-user-circle"></i> Dashboard</span>
+    <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+</header>
+
+<div class="container">
+    <h1>Welcome to Your blog app</h1>
+
+    <div class="options">
+        <a href="/posts/create" class="option-card">
+            <i class="fas fa-pen"></i>
+            <h3>Create Post</h3>
+        </a>
+        <a href="/posts" class="option-card">
+            <i class="fas fa-list"></i>
+            <h3>View Posts</h3>
+        </a>
+        <a href="/web/users" class="option-card">
+            <i class="fas fa-users"></i>
+            <h3>View Users</h3>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

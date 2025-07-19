@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Connexion</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 50px; }
+        .container { max-width: 400px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+        h1 { text-align: center; color: #333; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+        button { width: 100%; padding: 10px; background-color: #4361ee; color: white; border: none; border-radius: 5px; font-size: 16px; }
+        button:hover { background-color: #3f37c9; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Connexion</h1>
+
+    <!-- 🔥 Ajouter ici le message d'erreur -->
+    <div th:if="${param.error}" style="color: red; text-align: center; margin-bottom: 10px;">
+        Nom d'utilisateur ou mot de passe incorrect.
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label for="username">Nom d'utilisateur:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Se connecter</button>
+    </form>
+</div>
+</body>
+</html>

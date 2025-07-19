@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${post.title}">Post</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container py-5">
+
+    <!-- Post Title -->
+    <h1 th:text="${post.title}"></h1>
+    <p class="text-muted" th:text="${#temporals.format(post.createdAt, 'dd MMM yyyy')}">Post Date</p>
+    <p th:text="${post.content}"></p>
+
+    <hr>
+
+    <!-- Comments Section -->
+    <h3>Comments</h3>
+
+    <div th:if="${#lists.isEmpty(post.comments)}" class="alert alert-info">
+        No comments yet. Be the first to comment!
+    </div>
+    <div th:each="comment : ${post.comments}" class="mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted" th:text="${comment.author.username}">Author</h6>
+                <p class="card-text" th:text="${comment.content}"></p>
+
+                <div class="d-flex justify-content-between">
+                    <small class="text-muted" th:text="${#temporals.format(comment.createdAt, 'dd MMM yyyy HH:mm')}">Comment Date</small>
+
+                    <!-- Delete comment button -->
+
+                    <form th:action="@{/comments/delete/{id}(id=${comment.id})}" method="post" style="display:inline;">
+                        <input type="hidden" name="postId" th:value="${post.id}" />
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this comment?')">Delete</button>
+                    </form>
+                    <!-- Only post author can delete comments -->
+                    <!--<div th:if="${post.author != null and #authentication.name == post.author.username}">
+                        <form th:action="@{/comments/delete/{id}(id=${comment.id})}" method="post" style="display:inline;">
+                            <input type="hidden" name="postId" th:value="${post.id}" />
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this comment?')">Delete</button>
+                        </form>-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Add New Comment Form -->
+<!-- Add New Comment Form -->
+<h4 class="mt-5">Add a Comment</h4>
+<div class="card">
+    <div class="card-body">
+        <form th:action="@{'/comments/add/' + ${post.id}}" method="post">
+            <div class="mb-3">
+                <textarea name="content" class="form-control" rows="3" placeholder="Write your comment..." required></textarea>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a th:href="@{/posts}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

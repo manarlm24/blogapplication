@@ -1,0 +1,13 @@
+<form th:action="@{/web/users/admin/create}" method="post" th:object="${user}">
+    <label>Username: <input type="text" th:field="*{username}" /></label><br/>
+    <label>Email: <input type="email" th:field="*{email}" /></label><br/>
+    <label>Password: <input type="password" th:field="*{password}" /></label><br/>
+
+    <label>Roles:</label><br/>
+    <div th:each="role : ${availableRoles}">
+        <input type="checkbox" name="selectedRoles"
+               th:value="${role}" th:text="${role}" />
+    </div>
+
+    <button type="submit">Create User</button>
+</form>
